@@ -1,0 +1,200 @@
+{
+  "id": "lexicon.corporate.min",
+  "version": "1.0.0",
+  "language": "en",
+  "termSets": {
+    "noun.business": {
+      "pos": "noun",
+      "tags": ["domain:business", "register:formal"],
+      "terms": [
+        { "value": "strategy", "weight": 5 },
+        { "value": "initiative", "weight": 4 },
+        { "value": "stakeholder", "weight": 4 },
+        { "value": "synergy", "weight": 3 },
+        { "value": "deliverable", "weight": 3 },
+        { "value": "benchmark", "weight": 3 },
+        { "value": "pipeline", "weight": 2 },
+        { "value": "bandwidth", "weight": 2 },
+        { "value": "ecosystem", "weight": 2 },
+        { "value": "leverage", "weight": 2 }
+      ]
+    },
+    "noun.meeting": {
+      "pos": "noun",
+      "tags": ["domain:business"],
+      "terms": [
+        { "value": "meeting", "weight": 5 },
+        { "value": "conference", "weight": 3 },
+        { "value": "summit", "weight": 2 },
+        { "value": "workshop", "weight": 3 },
+        { "value": "briefing", "weight": 2 },
+        { "value": "presentation", "weight": 4 },
+        { "value": "discussion", "weight": 3 }
+      ]
+    },
+    "verb.business": {
+      "pos": "verb",
+      "tags": ["domain:business"],
+      "terms": [
+        { "value": "leverage", "weight": 4 },
+        { "value": "optimize", "weight": 4 },
+        { "value": "streamline", "weight": 3 },
+        { "value": "synergize", "weight": 2 },
+        { "value": "facilitate", "weight": 3 },
+        { "value": "implement", "weight": 5 },
+        { "value": "execute", "weight": 4 },
+        { "value": "deliver", "weight": 4 },
+        { "value": "align", "weight": 3 },
+        { "value": "prioritize", "weight": 3 }
+      ]
+    },
+    "verb.meeting": {
+      "pos": "verb",
+      "tags": ["domain:business"],
+      "terms": [
+        { "value": "schedule", "weight": 4 },
+        { "value": "convene", "weight": 2 },
+        { "value": "adjourn", "weight": 2 },
+        { "value": "attend", "weight": 4 },
+        { "value": "organize", "weight": 3 },
+        { "value": "chair", "weight": 2 }
+      ]
+    },
+    "adj.business": {
+      "pos": "adj",
+      "tags": ["domain:business", "register:formal"],
+      "terms": [
+        { "value": "strategic", "weight": 5 },
+        { "value": "proactive", "weight": 4 },
+        { "value": "scalable", "weight": 3 },
+        { "value": "robust", "weight": 3 },
+        { "value": "agile", "weight": 4 },
+        { "value": "sustainable", "weight": 3 },
+        { "value": "innovative", "weight": 4 },
+        { "value": "competitive", "weight": 3 },
+        { "value": "dynamic", "weight": 3 },
+        { "value": "holistic", "weight": 2 }
+      ]
+    },
+    "adv.business": {
+      "pos": "adv",
+      "tags": ["domain:business"],
+      "terms": [
+        { "value": "strategically", "weight": 4 },
+        { "value": "proactively", "weight": 3 },
+        { "value": "effectively", "weight": 5 },
+        { "value": "efficiently", "weight": 4 },
+        { "value": "seamlessly", "weight": 3 },
+        { "value": "holistically", "weight": 2 },
+        { "value": "comprehensively", "weight": 3 }
+      ]
+    },
+    "prep.business": {
+      "pos": "prep",
+      "tags": ["domain:business"],
+      "terms": [
+        { "value": "regarding", "weight": 3 },
+        { "value": "concerning", "weight": 2 },
+        { "value": "throughout", "weight": 3 },
+        { "value": "within", "weight": 4 },
+        { "value": "across", "weight": 4 }
+      ]
+    },
+    "intj.formal": {
+      "pos": "intj",
+      "tags": ["register:formal"],
+      "terms": [
+        { "value": "indeed", "weight": 4 },
+        { "value": "certainly", "weight": 4 },
+        { "value": "naturally", "weight": 3 },
+        { "value": "accordingly", "weight": 2 },
+        { "value": "importantly", "weight": 3 }
+      ]
+    }
+  },
+  "patterns": {
+    "sentence.corporate": {
+      "type": "sentence",
+      "slots": ["NP", "VP", "PUNCT"],
+      "tags": ["domain:business"],
+      "weight": 2
+    }
+  },
+  "distributions": {
+    "sentenceTypes.corporate": [
+      { "key": "simpleDeclarative", "weight": 50 },
+      { "key": "compound", "weight": 20 },
+      { "key": "introAdverbial", "weight": 15 },
+      { "key": "subordinate", "weight": 12 },
+      { "key": "interjection", "weight": 2 },
+      { "key": "question", "weight": 1 }
+    ],
+    "termSetBias.domain:business": [
+      { "key": "noun.business", "weight": 10 },
+      { "key": "noun.meeting", "weight": 5 },
+      { "key": "verb.business", "weight": 8 },
+      { "key": "verb.meeting", "weight": 4 },
+      { "key": "adj.business", "weight": 8 },
+      { "key": "adv.business", "weight": 5 }
+    ]
+  },
+  "correlations": [
+    {
+      "when": { "chosenTermSet": "noun.business" },
+      "thenBoost": [
+        { "termSet": "verb.business", "weightDelta": 5 },
+        { "termSet": "adj.business", "weightDelta": 3 }
+      ],
+      "scope": "sentence"
+    },
+    {
+      "when": { "chosenTermSet": "noun.meeting" },
+      "thenBoost": [
+        { "termSet": "verb.meeting", "weightDelta": 5 }
+      ],
+      "scope": "sentence"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c.noRepeatNoun",
+      "level": "hard",
+      "scope": "sentence",
+      "type": "noRepeat",
+      "target": "pos:noun"
+    },
+    {
+      "id": "c.maxPP",
+      "level": "hard",
+      "scope": "phrase",
+      "type": "maxCount",
+      "target": "PP",
+      "value": 2
+    }
+  ],
+  "invariants": [
+    { "id": "inv.capitalized", "type": "capitalization", "scope": "sentence" },
+    { "id": "inv.endsWithPunct", "type": "punctuation", "scope": "sentence" },
+    { "id": "inv.noDoubleSpaces", "type": "whitespace", "scope": "text" }
+  ],
+  "archetypes": {
+    "corporate": {
+      "tags": ["register:formal", "domain:business"],
+      "distributions": {
+        "sentenceTypes": "sentenceTypes.corporate",
+        "termSetBias": "termSetBias.domain:business"
+      },
+      "overrides": {
+        "interjectionRate": 0.02,
+        "subordinateClauseRate": 0.12,
+        "questionRate": 0.01
+      }
+    }
+  },
+  "relations": [
+    { "from": "strategy", "type": "hasPart", "to": "initiative", "weight": 3 },
+    { "from": "initiative", "type": "requires", "to": "stakeholder", "weight": 2 },
+    { "from": "meeting", "type": "produces", "to": "deliverable", "weight": 2 },
+    { "from": "synergy", "type": "enables", "to": "leverage", "weight": 2 }
+  ]
+}
