@@ -27,6 +27,12 @@ Marlarky is a faker-like library and CLI that produces grammatically correct Eng
 npm install marlarky
 ```
 
+## Source Code & Issues
+**Source**: https://github.com/JPaulDuncan/malarky
+**Issues**: https://github.com/JPaulDuncan/malarky/issues
+**Additional Usage**: https://jpaulduncan.github.io/malarky/usage.md
+**License**: MIT
+
 ## Quick Start
 
 ### TypeScript / JavaScript
@@ -233,7 +239,7 @@ const result = generator.sentence({
 });
 ```
 
-Transforms can also be configured at the lexicon level or per-archetype in your lexicon JSON. See the [usage guide](usage.md#output-transforms) for details.
+Transforms can also be configured at the lexicon level or per-archetype in your lexicon JSON. See the [usage guide](https://jpaulduncan.github.io/malarky/usage.md) for details.
 
 ## Sentence Types
 
