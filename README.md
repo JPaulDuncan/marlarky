@@ -28,9 +28,10 @@ npm install marlarky
 ```
 
 ## Source Code & Issues
-**Source**: https://github.com/JPaulDuncan/malarky
-**Issues**: https://github.com/JPaulDuncan/malarky/issues
-**Additional Usage**: https://jpaulduncan.github.io/malarky/usage.md
+
+**Source**: https://github.com/JPaulDuncan/marlarky
+**Issues**: https://github.com/JPaulDuncan/marlarky/issues
+**Additional Usage**: https://jpaulduncan.github.io/marlarky/usage.md
 **License**: MIT
 
 ## Quick Start
@@ -78,29 +79,29 @@ After installing globally (`npm install -g marlarky`) or locally, the `marlarky`
 
 ### Commands
 
-| Command      | Description                                     |
-| ------------ | ----------------------------------------------- |
-| `sentence`   | Generate one or more sentences                  |
-| `paragraph`  | Generate one or more paragraphs                 |
-| `text`       | Generate a text block (multiple paragraphs)     |
-| `validate`   | Validate a lexicon JSON file                    |
-| `list`       | List available transforms or sentence types     |
+| Command     | Description                                 |
+| ----------- | ------------------------------------------- |
+| `sentence`  | Generate one or more sentences              |
+| `paragraph` | Generate one or more paragraphs             |
+| `text`      | Generate a text block (multiple paragraphs) |
+| `validate`  | Validate a lexicon JSON file                |
+| `list`      | List available transforms or sentence types |
 
 ### Global Options
 
 These options work with `sentence`, `paragraph`, and `text`:
 
-| Option                     | Short | Description                                              |
-| -------------------------- | ----- | -------------------------------------------------------- |
-| `--seed <n>`               | `-s`  | RNG seed for deterministic output                        |
-| `--lexicon <path>`         | `-l`  | Path to a lexicon JSON file                              |
-| `--archetype <name>`       | `-a`  | Archetype to activate from the lexicon                   |
-| `--transform <id>`         | `-x`  | Apply an output transform (repeatable, comma-separated)  |
-| `--trace`                  | `-t`  | Output JSON trace to stderr                              |
-| `--json`                   | `-j`  | Output full result as JSON to stdout                     |
-| `--count <n>`              | `-n`  | Number of items to generate (default: 1)                 |
-| `--help`                   | `-h`  | Show help                                                |
-| `--version`                | `-v`  | Show version                                             |
+| Option               | Short | Description                                             |
+| -------------------- | ----- | ------------------------------------------------------- |
+| `--seed <n>`         | `-s`  | RNG seed for deterministic output                       |
+| `--lexicon <path>`   | `-l`  | Path to a lexicon JSON file                             |
+| `--archetype <name>` | `-a`  | Archetype to activate from the lexicon                  |
+| `--transform <id>`   | `-x`  | Apply an output transform (repeatable, comma-separated) |
+| `--trace`            | `-t`  | Output JSON trace to stderr                             |
+| `--json`             | `-j`  | Output full result as JSON to stdout                    |
+| `--count <n>`        | `-n`  | Number of items to generate (default: 1)                |
+| `--help`             | `-h`  | Show help                                               |
+| `--version`          | `-v`  | Show version                                            |
 
 ### Generating Sentences
 
@@ -180,7 +181,7 @@ marlarky sentence --seed 42 --json
 ```json
 {
   "text": "Generally, the change called.",
-  "trace": { "..." : "..." },
+  "trace": { "...": "..." },
   "meta": {
     "archetype": "default",
     "seed": 42
@@ -215,18 +216,18 @@ marlarky list transforms --json
 
 Marlarky includes 10 built-in output transforms that modify generated text at the token level. All transforms are deterministic (same seed = same output) and safe to chain.
 
-| Transform       | Description                               |
-| --------------- | ----------------------------------------- |
-| `pigLatin`      | Classic Pig Latin                         |
-| `ubbiDubbi`     | Ubbi Dubbi language game                  |
-| `leet`          | Leetspeak character substitution          |
-| `uwu`           | Cute speak (w-substitution, suffixes)     |
-| `pirate`        | Pirate speak                              |
-| `redact`        | Redact/mask words                         |
-| `emoji`         | Add emoji replacements                    |
-| `mockCase`      | rAnDoM cAsE aLtErNaTiOn                  |
-| `reverseWords`  | Reverse word order                        |
-| `bizJargon`     | Business jargon patterns                  |
+| Transform      | Description                           |
+| -------------- | ------------------------------------- |
+| `pigLatin`     | Classic Pig Latin                     |
+| `ubbiDubbi`    | Ubbi Dubbi language game              |
+| `leet`         | Leetspeak character substitution      |
+| `uwu`          | Cute speak (w-substitution, suffixes) |
+| `pirate`       | Pirate speak                          |
+| `redact`       | Redact/mask words                     |
+| `emoji`        | Add emoji replacements                |
+| `mockCase`     | rAnDoM cAsE aLtErNaTiOn               |
+| `reverseWords` | Reverse word order                    |
+| `bizJargon`    | Business jargon patterns              |
 
 ### Using Transforms in Code
 
@@ -239,7 +240,7 @@ const result = generator.sentence({
 });
 ```
 
-Transforms can also be configured at the lexicon level or per-archetype in your lexicon JSON. See the [usage guide](https://jpaulduncan.github.io/malarky/usage.md) for details.
+Transforms can also be configured at the lexicon level or per-archetype in your lexicon JSON. See the [usage guide](https://jpaulduncan.github.io/marlarky/usage.md) for details.
 
 ## Sentence Types
 
@@ -328,7 +329,11 @@ Create domain-specific marlarky with JSON lexicon files:
 Load it in code:
 
 ```typescript
-import { TextGenerator, SimpleFakerAdapter, loadLexiconFromString } from 'marlarky';
+import {
+  TextGenerator,
+  SimpleFakerAdapter,
+  loadLexiconFromString,
+} from 'marlarky';
 import { readFileSync } from 'fs';
 
 const lexicon = loadLexiconFromString(readFileSync('./startup.json', 'utf-8'));
@@ -364,11 +369,11 @@ import {
   getIndefiniteArticle,
 } from 'marlarky';
 
-pluralize('synergy');        // "synergies"
-pluralize('child');          // "children"
+pluralize('synergy'); // "synergies"
+pluralize('child'); // "children"
 singularize('stakeholders'); // "stakeholder"
-getPastTense('leverage');    // "leveraged"
-getPastTense('go');          // "went"
+getPastTense('leverage'); // "leveraged"
+getPastTense('go'); // "went"
 getPresentParticiple('run'); // "running"
 getThirdPersonSingular('do'); // "does"
 getIndefiniteArticle('hour'); // "an"
@@ -403,7 +408,7 @@ const generator = new TextGenerator({
     minSentencesPerParagraph: 3,
     maxSentencesPerParagraph: 6,
     questionRate: 0.05,
-    compoundRate: 0.20,
+    compoundRate: 0.2,
     subordinateClauseRate: 0.15,
     maxPPChain: 2,
     maxAdjectivesPerNoun: 2,
@@ -473,17 +478,17 @@ npm run lint
 
 For the complete API reference including all types, interfaces, and configuration options, see the [usage guide](usage.md).
 
-| Method / Function             | Description                              |
-| ----------------------------- | ---------------------------------------- |
-| `new TextGenerator(opts)`     | Create a generator instance              |
-| `generator.sentence(opts?)`   | Generate one sentence                    |
-| `generator.paragraph(opts?)`  | Generate a paragraph (2-7 sentences)     |
-| `generator.textBlock(opts?)`  | Generate multiple paragraphs             |
-| `generator.setSeed(n)`        | Set RNG seed for reproducibility         |
-| `generator.setLexicon(lex)`   | Load or replace a lexicon at runtime     |
-| `generator.setArchetype(name)`| Activate a style preset                  |
-| `validateLexicon(obj)`        | Validate a lexicon object                |
-| `loadLexiconFromString(json)` | Parse a lexicon JSON string              |
+| Method / Function              | Description                          |
+| ------------------------------ | ------------------------------------ |
+| `new TextGenerator(opts)`      | Create a generator instance          |
+| `generator.sentence(opts?)`    | Generate one sentence                |
+| `generator.paragraph(opts?)`   | Generate a paragraph (2-7 sentences) |
+| `generator.textBlock(opts?)`   | Generate multiple paragraphs         |
+| `generator.setSeed(n)`         | Set RNG seed for reproducibility     |
+| `generator.setLexicon(lex)`    | Load or replace a lexicon at runtime |
+| `generator.setArchetype(name)` | Activate a style preset              |
+| `validateLexicon(obj)`         | Validate a lexicon object            |
+| `loadLexiconFromString(json)`  | Parse a lexicon JSON string          |
 
 ## License
 
