@@ -1,6 +1,6 @@
 {
   "name": "marlarky",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Marlarky - A faker-like library for generating syntactically plausible English text",
   "type": "module",
   "main": "dist/index.js",

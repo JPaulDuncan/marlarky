@@ -30,8 +30,11 @@ npm install marlarky
 ## Source Code & Issues
 
 **Source**: https://github.com/JPaulDuncan/marlarky
+
 **Issues**: https://github.com/JPaulDuncan/marlarky/issues
+
 **Additional Usage**: https://jpaulduncan.github.io/marlarky/usage.md
+
 **License**: MIT
 
 ## Quick Start
